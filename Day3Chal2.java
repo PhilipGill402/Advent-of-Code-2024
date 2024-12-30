@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day3Chal1 {
+public class Day3Chal2 {
 
     public static List<String> findMatches (String data, String regex){
         Pattern pattern = Pattern.compile(regex);
@@ -30,7 +30,7 @@ public class Day3Chal1 {
             long startTime = System.currentTimeMillis();
             while (Reader.hasNextLine()){
                 String data = Reader.nextLine();
-                String regex = "mul\\([0-9]{1,4},[0-9]{1,4}\\)";
+                String regex = "do\\(\\)|mul\\([0-9]{1,4},[0-9]{1,4}\\)|don't\\(\\)";
                 
                 List<String> matches = findMatches(data, regex);
 
