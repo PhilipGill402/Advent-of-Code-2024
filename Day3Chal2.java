@@ -28,20 +28,31 @@ public class Day3Chal2 {
             
             int total = 0;
             long startTime = System.currentTimeMillis();
-            while (Reader.hasNextLine()){
-                String data = Reader.nextLine();
-                String regex = "do\\(\\)|mul\\([0-9]{1,4},[0-9]{1,4}\\)|don't\\(\\)";
+            //because the data is only one line we don't need to loop through each line 
+            String data = Reader.nextLine();
+            String regex = "do\\(\\)|mul\\([0-9]{1,4},[0-9]{1,4}\\)|don't\\(\\)";
                 
-                List<String> matches = findMatches(data, regex);
-
-                for (int i = 0; i < matches.size(); i++){
+            List<String> matches = findMatches(data, regex);
+            Boolean isDo = true; 
+                
+            for (int i = 0; i < matches.size(); i++){
+                if (matches.get(i).equals("do()")){
+                    isDo = true;
+                }
+                else if (matches.get(i).equals("don't()")){
+                    isDo = false;
+                }
+                else if (isDo){
                     String numData = matches.get(i);
                     String numRegex = "[0-9]{1,4}";
 
                     List<String> numMatches = findMatches(numData, numRegex);
 
-                    total += Integer.parseInt(numMatches.get(0)) * Integer.parseInt(numMatches.get(1));
-                }
+                    if (numMatches.size() == 2){
+                        total += Integer.parseInt(numMatches.get(0)) * Integer.parseInt(numMatches.get(1));
+                    
+                    }
+                } 
             
             }
             System.out.println(total);
